@@ -11,8 +11,7 @@ const ToDoListForm = () => {
     const [input, setinput] = useState('');
 
     useEffect(() => db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-        console.log(snapshot.docs.map(doc => doc.data().text))
-        setToDos(snapshot.docs.map(doc => doc.data().text))
+        setToDos(snapshot.docs.map(doc => ({id:doc.id ,text: doc.data().text}) ))
     }), []);
 
     const add = () =>{
