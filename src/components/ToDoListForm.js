@@ -4,6 +4,7 @@ import {TextField, Fab, CircularProgress} from "@material-ui/core";
 import {Add, List} from "@material-ui/icons";
 import db from '../firebase';
 import firebase from "firebase";
+import s from './todo.module.css';
 
 
 const ToDoListForm = () => {
@@ -21,14 +22,14 @@ const ToDoListForm = () => {
     }
     return toDoList ?
         <div>
-            <h3 ><List/>Your ToDo list</h3>
-            <form >
-                <TextField label={'todo'} value={input} onChange={e => setinput(e.target.value)}/>
+            <h2 className={s.title}><List className={s.list_icon}/> Your ToDo list</h2>
+            <form className={s.form}>
+                <TextField label={'New task'} value={input} onChange={e => setinput(e.target.value)}/>
                 <Fab type={'submit'} disabled={!input} onClick={add} size={'small'}><Add/></Fab>
             </form>
             <ToDoList list={toDoList}/>
         </div>
-     : <CircularProgress/>
+     : <CircularProgress size={'70px'} className={s.load}/>
 };
 
 export default ToDoListForm;
